@@ -21,14 +21,14 @@ class StyleTransfer(nn.Module):
 
         # TODO: 추출해야 하는 layer 지정
         self.content_layers = [conv["conv4_2"]]
-        self.style_laeyrs = [
+        self.style_layers = [
             conv["conv1_1"],
             conv["conv2_1"],
             conv["conv3_1"],
             conv["conv4_1"],
             conv["conv5_1"],
         ]
-        self.style_feature_maps_num = len(self.style_laeyrs)
+        self.style_feature_maps_num = len(self.style_layers)
 
     def forward(self, x: torch.Tensor, status: str):
         outputs = []
@@ -41,7 +41,7 @@ class StyleTransfer(nn.Module):
         elif status == "style":
             for i in range(len(self.vgg19_features)):
                 x = self.vgg19_features[i](x)
-                if i in self.style_laeyrs:
+                if i in self.style_layers:
                     outputs.append(x)
 
         return outputs
