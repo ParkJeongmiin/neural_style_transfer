@@ -28,6 +28,7 @@ class StyleTransfer(nn.Module):
             conv["conv4_1"],
             conv["conv5_1"],
         ]
+        self.style_feature_maps_num = len(self.style_laeyrs)
 
     def forward(self, x: torch.Tensor, status: str):
         outputs = []
