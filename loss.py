@@ -42,5 +42,5 @@ class StyleLoss(nn.Module):
             current_style_representation, target_style_representation
         ):
             style_loss += torch.nn.MSELoss(reduction="sum")(gram_x, gram_y)
-        style_loss /= len(self.style_feature_maps_num)
+        style_loss /= self.style_feature_maps_num
         return style_loss
