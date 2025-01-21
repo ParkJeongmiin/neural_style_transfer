@@ -1,21 +1,28 @@
 # import
 
-# device 설정
 
-# data(content, style) load
-## data pre processing - to tensor, transform
+def main():
+    # device 설정
 
-# model(StyleTransfer) load
+    # data(content, style) load
+    ## data pre processing - to tensor, transform
 
-# loss(ContentLoss, StyleLoss), optimizer load
+    # model(StyleTransfer) load
 
-# hyperparameter 설정
+    # loss(ContentLoss, StyleLoss), optimizer load
 
-# trainloop
-## model apply
-## loss calculate
-## optimizer update
-## loss log
+    # hyperparameter 설정
 
-## data post processing : tensor to image
-## save generated image
+    # trainloop
+    ## model apply
+    ## loss calculate
+    ## optimizer update
+    ## loss log
+
+    ## data post processing : tensor to image
+    ## save generated image
+    pass
+
+
+if __name__ == "__main__":
+    main()
