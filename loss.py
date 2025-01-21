@@ -17,15 +17,11 @@ class ContentLoss(nn.Module):
 class StyleLoss(nn.Module):
     def __init__(
         self,
-        current_style_feature_maps,
-        target_style_feature_maps,
         style_feature_maps_num,
         gram_normalize=True,
     ):
         super(StyleLoss, self).__init__()
         self.gram_normalize = gram_normalize
-        self.current_style_feature_maps = current_style_feature_maps
-        self.target_style_feature_maps = target_style_feature_maps
         self.style_feature_maps_num = style_feature_maps_num
 
     def gram_matrix(self, input: torch.Tensor):
@@ -37,14 +33,9 @@ class StyleLoss(nn.Module):
             gram /= ch * h * w
         return gram
 
-    def forward(self):
-        current_style_representation = [
-            self.gram_matrix(x) for x in self.current_style_feature_maps
-        ]
-
-        target_style_representation = [
-            self.gram_matrix(x) for x in self.target_style_feature_maps
-        ]
+    def forward(self, input, target):
+        current_style_representation = [self.gram_matrix(x) for x in input]
+        target_style_representation = [self.gram_matrix(x) for x in target]
 
         style_loss = 0.0
         for gram_x, gram_y in zip(
