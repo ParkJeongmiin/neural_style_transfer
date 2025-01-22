@@ -7,16 +7,16 @@ if __name__ == "__main__":
     # Data and model parameters directories
     # -- Data setting
     parser.add_argument(
-        "--content_image",
+        "--content_path",
         type=str,
-        default="content",
-        help="content iamge file name (default: content)",
+        default="./data/content/content.jpg",
+        help="content iamge file name (default: ./data/content/content.jpg)",
     )
     parser.add_argument(
-        "--style_image",
+        "--style_path",
         type=str,
-        default="style",
-        help="style image file name (default: style)",
+        default="./data/style/style.jpg",
+        help="style image file name (default: ./data/style/style.jpg)",
     )
 
     # -- Model hyperparameters setting
