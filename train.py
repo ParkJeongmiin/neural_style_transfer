@@ -1,6 +1,8 @@
 import os
 import argparse
+import datetime
 from importlib import import_module
+from pytz import timezone
 
 
 if __name__ == "__main__":
@@ -67,7 +69,15 @@ if __name__ == "__main__":
     print(f" Use {trainer_name}_trainer ...")
     trainer = train_module(content_dir, style_dir, args)
 
-    # 학습 시작
+    # -- 학습 + 시간 기록
+    start_time = datetime.datetime.now(timezone("Asia/Seoul"))
+    print(f"학습 시작: {str(start_time)[:19]}")
 
-    # 학습 종료
-    # 학습 소요 시간 계산 및 출력
+    trainer.train(args)
+
+    end_time = datetime.datetime.now(timezone("Asia/Seoul"))
+    print(f"학습 종료: {str(end_time)[:19]}")
+
+    # -- 학습 소요 시간 계산 및 출력
+    elapsed_time = end_time - start_time
+    print(f"학습 소요 시간: {elapsed_time}")
