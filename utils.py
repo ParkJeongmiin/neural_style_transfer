@@ -44,5 +44,5 @@ def post_processing(tensor: torch.Tensor) -> Image.Image:
     image = image.squeeze(0)  # (b, ch, h, w) -> (ch, h, w)
     image = image.transpose(1, 2, 0)  # (ch, h, w) -> (h, w, ch)
     image = image * VGG19_STD + VGG19_MEAN
-    image = np.clip(image, 0, 255).astype(np.unit8)
+    image = np.clip(image, 0, 255).astype(np.uint8)
     return Image.fromarray(image)
