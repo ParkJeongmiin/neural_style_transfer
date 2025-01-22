@@ -2,29 +2,6 @@ import os
 import argparse
 
 
-def main():
-    # device 설정
-
-    # data(content, style) load
-    ## data pre processing - to tensor, transform
-
-    # model(StyleTransfer) load
-
-    # loss(ContentLoss, StyleLoss), optimizer load
-
-    # hyperparameter 설정
-
-    # trainloop
-    ## model apply
-    ## loss calculate
-    ## optimizer update
-    ## loss log
-
-    ## data post processing : tensor to image
-    ## save generated image
-    pass
-
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     # Data and model parameters directories
@@ -76,5 +53,3 @@ if __name__ == "__main__":
 
     # 학습 종료
     # 학습 소요 시간 계산 및 출력
-
-    main()
