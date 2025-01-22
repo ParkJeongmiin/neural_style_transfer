@@ -65,7 +65,9 @@ class StyleTransferTrainer:
             loss_total.backward()
             optimizer.step()
 
-        ## loss log
-
-        ## data post processing : tensor to image
-        ## save generated image
+            # -- loss log by log_interval
+            if epoch % args.log_interval == 0:
+                print(
+                    f"epoch: {epoch} | loss total: {loss_total} | content loss: {loss_c} | style loss: {loss_s}"
+                )
+                result = post_processing(output)
