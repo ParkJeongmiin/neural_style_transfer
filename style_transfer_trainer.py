@@ -2,6 +2,7 @@ import torch
 import torch.optim as optim
 
 from PIL import Image
+from tqdm import tqdm
 
 from model import StyleTransfer
 from loss import ContentLoss, StyleLoss
@@ -37,14 +38,29 @@ class StyleTransferTrainer:
         content_loss = ContentLoss()
         style_loss = StyleLoss(style_feature_maps_num=model.style_feature_maps_num)
         optimizer = optim.Adam(output, lr=args.lr)
-        # hyperparameter 설정
 
-        # trainloop
-        ## model apply
-        ## loss calculate
+        # -- training
+        for epoch in tqdm(range(args.epochs)):
+            # -- data input to model
+            content_features = model(output, "content")
+            style_features = model(output, "style")
+
+            target_content_features = model(content_image, "content")
+            target_style_features = model(style_image, "style")
+
+            # -- loss calculate
+            loss_c, loss_s, loss_total = 0, 0, 0
+
+            for content_representation, target_content_representation in zip(
+                content_features, target_content_features
+            ):
+                loss_c += content_loss(
+                    content_representation, target_content_representation
+                )
+            loss_s = style_loss(style_features, target_style_features)
+            loss_total = args.alpha * loss_c + args.beta * loss_s
         ## optimizer update
         ## loss log
 
         ## data post processing : tensor to image
         ## save generated image
-        pass
