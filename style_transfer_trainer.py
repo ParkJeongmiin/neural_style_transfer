@@ -59,7 +59,12 @@ class StyleTransferTrainer:
                 )
             loss_s = style_loss(style_features, target_style_features)
             loss_total = args.alpha * loss_c + args.beta * loss_s
-        ## optimizer update
+
+            # -- optimizer update
+            optimizer.zero_grad()
+            loss_total.backward()
+            optimizer.step()
+
         ## loss log
 
         ## data post processing : tensor to image
