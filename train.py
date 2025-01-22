@@ -37,8 +37,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "--trainer",
         type=str,
-        default="style_transfer",
-        help="trainer type (default: style_transfer)",  # 향후 다른 모델을 구현했을 때, 학습 파이프라인 관리를 위해 수정 필요
+        default="StyleTransfer",
+        help="trainer type (default: StyleTransfer)",  # 향후 다른 모델을 구현했을 때, 학습 파이프라인 관리를 위해 수정 필요
     )
     parser.add_argument(
         "--lr", type=float, default=1e-3, help="learning rate (default: 1e-3)"
