@@ -35,14 +35,14 @@ class StyleTransferTrainer:
         style_image = pre_processing(style_image).to(device)
 
         # -- trained object setting -> 학습되는 대상을 지정해서 학습을 진행하도록 업데이트 예정
-        output = torch.randn(1, 3, 256, 256).to(device)
+        output = torch.randn(1, 3, 512, 512).to(device)
         output.requires_grad_(True)
 
         # -- model, loss, optimizer setting
         model = StyleTransfer().eval().to(device)
         content_loss = ContentLoss()
         style_loss = StyleLoss(style_feature_maps_num=model.style_feature_maps_num)
-        optimizer = optim.Adam([output], lr=args.lr)
+        optimizer = optim.Adam(output, lr=args.lr)
 
         # -- training
         for epoch in tqdm(range(args.epochs)):
