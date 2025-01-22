@@ -25,7 +25,9 @@ class StyleTransferTrainer:
         style_image = Image.open(self.style_dir)
         style_image = pre_processing(style_image).to(device)
 
-        # model(StyleTransfer) load
+        # -- trained object setting -> 학습되는 대상을 지정해서 학습을 진행하도록 업데이트 예정
+        output = torch.randn(1, 3, 512, 512).to(device)
+        output.requires_grad_(True)
 
         # loss(ContentLoss, StyleLoss), optimizer load
 
