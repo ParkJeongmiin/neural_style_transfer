@@ -5,18 +5,23 @@ import argparse
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     # Data and model parameters directories
+    # -- directory setting
+    parser.add_argument(
+        "--save_name", type=str, default="result", help="svave name(default: result)"
+    )
+
     # -- Data setting
     parser.add_argument(
-        "--content_image",
+        "--content_path",
         type=str,
-        default="content",
-        help="content iamge file name (default: content)",
+        default="./data/content/content.jpg",
+        help="content iamge file name (default: ./data/content/content.jpg)",
     )
     parser.add_argument(
-        "--style_image",
+        "--style_path",
         type=str,
-        default="style",
-        help="style image file name (default: style)",
+        default="./data/style/style.jpg",
+        help="style image file name (default: ./data/style/style.jpg)",
     )
 
     # -- Model hyperparameters setting
