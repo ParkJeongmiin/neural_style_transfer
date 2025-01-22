@@ -1,6 +1,7 @@
 import torch
 import torch.optim as optim
 
+import os
 from PIL import Image
 from tqdm import tqdm
 
@@ -19,6 +20,10 @@ class StyleTransferTrainer:
         self.style_dir = style_dir
 
     def train(self, args):
+        # -- save directory setting
+        save_dir = f"./results/{args.save_name}_{args.alpha}_{args.beta}_{args.lr}"
+        os.makedirs(save_dir, exist_ok=True)
+
         # -- device setting
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -71,3 +76,4 @@ class StyleTransferTrainer:
                     f"epoch: {epoch} | loss total: {loss_total} | content loss: {loss_c} | style loss: {loss_s}"
                 )
                 result = post_processing(output)
+                result.save(os.path.join(save_dir, f"{epoch}.jpg"))
