@@ -35,7 +35,11 @@ class StyleTransferTrainer:
         style_image = pre_processing(style_image).to(device)
 
         # -- trained object setting -> 학습되는 대상을 지정해서 학습을 진행하도록 업데이트 예정
-        output = torch.randn(1, 3, 256, 256).to(device)
+        if args.output_version == "content":
+            output = content_image.clone()
+        else:
+            output = torch.randn(1, 3, 256, 256).to(device)
+
         output.requires_grad_(True)
 
         # -- model, loss, optimizer setting

@@ -26,6 +26,12 @@ if __name__ == "__main__":
         default="./data/style/style.jpg",
         help="style image file name (default: ./data/style/style.jpg)",
     )
+    parser.add_argument(
+        "--output_version",
+        type=str,
+        default="content",
+        help="setting model update image (default: content)",
+    )
 
     # -- Model hyperparameters setting
     parser.add_argument(
